@@ -1,0 +1,28 @@
+From 537ca9bf78066f5267b5aec9813638ed1d1e8071 Mon Sep 17 00:00:00 2001
+From: Mike Kuta <mike@kutasoftware.com>
+Date: Wed, 15 Mar 2017 11:56:11 -0400
+Subject: [PATCH] Check for greyscale when small image uses palette
+
+When a small file is stored with a palette, a test is made to see if
+removing the palette, and the overhead that goes with it, results in
+an even smaller file.  That test was always attempting RGB or RGBA
+mode even when the image in question was greyscale.  I added a check
+for greyscale.
+Last-Update: 2019-12-11
+---
+ src/zopflipng/zopflipng_lib.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/zopflipng/zopflipng_lib.cc b/src/zopflipng/zopflipng_lib.cc
+index b93bb18..89312ec 100644
+--- a/src/zopflipng/zopflipng_lib.cc
++++ b/src/zopflipng/zopflipng_lib.cc
+@@ -239,7 +239,7 @@ unsigned TryOptimize(
+       // Too small for tRNS chunk overhead.
+       if (w * h <= 16 && stats.key) stats.alpha = 1;
+       state.encoder.auto_convert = 0;
+-      state.info_png.color.colortype = (stats.alpha ? LCT_RGBA : LCT_RGB);
++      state.info_png.color.colortype = (stats.alpha ? (stats.colored ? LCT_RGBA : LCT_GREY_ALPHA) : (stats.colored ? LCT_RGB : LCT_GREY));
+       state.info_png.color.bitdepth = 8;
+       state.info_png.color.key_defined = (stats.key && !stats.alpha);
+       if (state.info_png.color.key_defined) {

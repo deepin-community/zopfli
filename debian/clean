@@ -1,0 +1,4 @@
+zopfli
+lodepng.o
+lodepng_util.o
+zopflipng_lib.o

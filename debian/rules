@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+override_dh_auto_configure:
+
+override_dh_auto_build:
+	dh_auto_build
+	dh_auto_build -- zopflipng
+	dh_auto_build -- libzopfli
+	dh_auto_build -- libzopflipng
+
+%:
+	dh  $@ --fail-missing
+
+.PHONY: override_dh_auto_configure override_dh_auto_build

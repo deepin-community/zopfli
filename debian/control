@@ -1,0 +1,40 @@
+Source: zopfli
+Section: utils
+Priority: optional
+Maintainer: Laszlo Boszormenyi (GCS) <gcs@debian.org>
+Build-Depends: debhelper (>= 11)
+Standards-Version: 4.4.1
+Homepage: https://github.com/google/zopfli
+
+Package: zopfli
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: zlib (gzip, deflate) compatible compressor
+ Zopfli Compression Algorithm is a new zlib (gzip, deflate) compatible
+ compressor. This compressor takes more time (~100x slower), but compresses
+ around 5% better than zlib and better than any other zlib-compatible
+ compressor we have found.
+
+Package: libzopfli1
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: zlib (gzip, deflate) compatible compressor - shared library
+ Zopfli Compression Algorithm is a new zlib (gzip, deflate) compatible
+ compressor. This compressor takes more time (~100x slower), but compresses
+ around 5% better than zlib and better than any other zlib-compatible
+ compressor we have found.
+ .
+ This package contains the library for application programming with zopfli.
+
+Package: libzopfli-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}, libzopfli1 (= ${binary:Version})
+Description: Header and static library files for libzopfli1
+ Zopfli Compression Algorithm is a new zlib (gzip, deflate) compatible
+ compressor. This compressor takes more time (~100x slower), but compresses
+ around 5% better than zlib and better than any other zlib-compatible
+ compressor we have found.
+ .
+ This package contains the headers for libzopfli1.
