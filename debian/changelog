@@ -1,3 +1,9 @@
+zopfli (1.0.3-1deepin0) unstable; urgency=medium
+
+  * No source change upload against GCC 12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Fri, 20 Sep 2024 12:59:23 +0800
+
 zopfli (1.0.3-1) unstable; urgency=medium
 
   * New upstream release.
